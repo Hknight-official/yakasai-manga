@@ -27,15 +27,17 @@
         )));
     }
 
-    if ($password !== repassword) {
+    if ($password !== $repassword) {
         exit(json_encode(array(
             "status" => 0,
             "msg" => "Mật Khẩu Nhập Lại Không Khớp !"
         )));
     }
+    
+    $conn->query("INSERT INTO `users` (`name`,`email`,`password`,`role`) VALUES ('{$username}','{$email}','{$password}','1')");
 
     $_SESSION['login'] = $username;
     exit(json_encode(array(
         "status" => 200,
-        "msg" => "Đăng Nhập Thành Công !"
+        "msg" => "Đăng Ký Thành Công !"
     )));
