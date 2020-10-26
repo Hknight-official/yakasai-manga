@@ -1,7 +1,7 @@
 <?php 
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
-$conn = new mysqli("yakasai.net", "yakasain_manga", "zq_*;lEtLtet", "yakasain_manga");
+$conn = new mysqli("yakasai.net", "yakasain_manga", "z#h;fh1AK+V.", "yakasain_manga");
 $conn->set_charset("utf8");
 $nameweb = "Yakasai.net";
 $per_page = 18;
