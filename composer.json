@@ -1,0 +1,29 @@
+{
+    "name": "kazoku/yakasai-manga",
+    "type": "project",
+    "require": {
+      "team-reflex/discord-php": "5.0.10",
+      "ext-mbstring": "*",
+      "ext-openssl": "*",
+      "ext-mysqli": "*",
+      "ext-json": "*",
+      "ext-imagick": "*",
+      "ext-fileinfo": "*"
+    },
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "kazoku",
+            "email": "kazoku0356@gmail.com"
+        },
+        {
+          "name": "hknight",
+          "email": "hackerkillt@gmail.com"
+        }
+    ],
+    "autoload": {
+      "psr-4": {
+        "root\\": "system"
+      }
+    }
+}

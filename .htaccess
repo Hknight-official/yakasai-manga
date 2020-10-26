@@ -1,0 +1,18 @@
+RewriteEngine On 
+RewriteCond %{HTTPS} on
+RewriteRule ^(.*)$ http://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+RewriteRule ^the-loai/(.*)$ /index.php?widget=search&selectgenres=$1 [L]
+
+RewriteRule ^manga$ /index.php?widget=main&type_manga=manga [L]
+RewriteRule ^manhua$ /index.php?widget=main&type_manga=manhua [L]
+RewriteRule ^manhwa$ /index.php?widget=main&type_manga=manhwa [L]
+
+RewriteRule ^manga/(.*)/(.*)/chap-(.*)$ /index.php?widget=chapter&name=$1&id=$2&chapter=$3 [L]
+RewriteRule ^manga/(.*)/(.*)$ /index.php?widget=manga&name=$1&id=$2 [L]
+
+RewriteRule ^manhua/(.*)/(.*)/chap-(.*)$ /index.php?widget=chapter&name=$1&id=$2&chapter=$3 [L]
+RewriteRule ^manhua/(.*)/(.*)$ /index.php?widget=manga&name=$1&id=$2 [L]
+
+RewriteRule ^manhwa/(.*)/(.*)/chap-(.*)$ /index.php?widget=chapter&name=$1&id=$2&chapter=$3 [L]
+RewriteRule ^manhwa/(.*)/(.*)$ /index.php?widget=manga&name=$1&id=$2 [L]
