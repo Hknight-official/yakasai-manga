@@ -195,10 +195,7 @@
            margin-bottom:3px;
            width: 100%;
         }
-        .chapter-container {
-            padding-right: 0px;
-            padding-left: 0px;
-        }
+        
         @media (min-width: 768px){
             .navbar-header {
                 float: left;

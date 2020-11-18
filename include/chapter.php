@@ -1,12 +1,10 @@
 
 <div class="container chapter-container" style="margin-top:30px;">
    <div class="row d-block clearfix">
-      <div class="col-12 col-lg-12">
+      <div class="col-12 col-md-12">
          <section class="feature-section at-series clear" style="background-color: #f6f4ec;">
             <main class="section-body">
                <div class="top-part">
-                  <div class="row"> 
-                     <div class="col-12 col-md-12">
                         <div class="comic-chapter-info"> 
                             <p class="text-left"><a href="/"><i class="fas fa-home" style="color:black"></i></a> <b style="color:black">»</b> <a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>"><?=$row_comic['name']?></a> <b style="color:black">»</b> <a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=$row_comic['last_chapter']?>">Chap <?=$get_['chapter']?></a></p></br>
                             <h4 class="text-left">
@@ -115,8 +113,7 @@
                                 }
                             ?>     
                             </div></br></br>
-                     </div>
-                  </div>
+                     
                </div>
             </main>
          </section>
