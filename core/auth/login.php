@@ -34,7 +34,7 @@
         )));
     }
 
-    $_SESSION['login'] = $username;
+    $_SESSION['login'] = $accounts['id'];
     exit(json_encode(array(
         "status" => 200,
         "msg" => "Đăng Nhập Thành Công !"

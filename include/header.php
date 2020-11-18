@@ -266,10 +266,48 @@
             <div class="navbar-header navbar-logo-wrapper" style="padding-top: 1rem;margin-right:0px;">
                 <a class="navbar-brand" href="/" title="Trang chủ" style="color: #03a899;"> <small><i class="fas fa-heart" aria-hidden="true" style="color:tomato"></i></small><b><u> Yasakai.net</u></b></a>
             </div>
-            <div id="navbar-user" class="guest">
-                <a class="login-link" href="#register" onclick="$('#register_modal').modal('show');"> <i class="fas fa-users"></i> Đăng Ký</a>
-                <a class="login-link" href="#login" onclick="$('#login_modal').modal('show');"> <i class="fas fa-key"></i> Đăng nhập</a>
-            </div>
+            <?php 
+            if (!client()){
+            ?>
+                <div id="navbar-user" class="guest">
+                    <a class="login-link" href="#register" onclick="$('#register_modal').modal('show');"> <i class="fas fa-users"></i> Đăng Ký</a>
+                    <a class="login-link" href="#login" onclick="$('#login_modal').modal('show');"> <i class="fas fa-key"></i> Đăng nhập</a>
+                </div>
+            <?php
+            } else {
+            ?>    
+                <div id="navbar-user">
+                    <div class="nav-user_icon">
+                        <div class="nav-user_avatar">
+                            <img src="<?=client()['profile_image']?>">
+                        </div>
+                        <div class="at-user_avatar"></div>
+                        <ul class="account-sidebar hidden-block unstyled none" style="background-color: #333;">
+                            <li>
+                                <a href="/history-read"><i class="fas fa-history"></i><span>Lịch sử Đọc</span></a>
+                            </li>
+                            <hr class="none block-l">
+                            <li>
+                                <a href="/comic-reg"><i class="fas fa-heart"></i><span>Truyện Theo dõi</span></a>
+                            </li>
+                            <hr class="none block-l">
+                            <li>
+                                <a href="/logout"><i class="fas fa-sign-out-alt"></i><span> Đăng Xuất</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="series-unread-icon" class="user-sublink appearing">
+                        <a class="link-item" href="/thong-bao">
+                            <div class="icon-wrapper">
+                            <i class="fas fa-exclamation-circle"></i>
+
+                                <span class="noti-unread">0</span></div>
+                        </a>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
             <div class="navbar-mainblock">
                 <div class="navbar-search none block-m">
                     <form class="" action="/" method="get">

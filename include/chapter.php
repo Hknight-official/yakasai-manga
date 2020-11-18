@@ -11,7 +11,7 @@
                             <p class="text-left"><a href="/"><i class="fas fa-home" style="color:black"></i></a> <b style="color:black">»</b> <a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>"><?=$row_comic['name']?></a> <b style="color:black">»</b> <a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=$row_comic['last_chapter']?>">Chap <?=$get_['chapter']?></a></p></br>
                             <h4 class="text-left">
                                 <b><?=$row_comic['name']?> - Chương <?=$get_['chapter']?></b> </br>
-                                <small> (Cập nhật lúc: <?=date("Y-m-d H:i:s", $row_comic['last_update'])?>)</small>
+                                <small> (Cập nhật lúc: <?=$row_comic['last_update']?>)</small>
                             </h4>
                         </div>    
                             <div class="manga-action">
@@ -19,7 +19,7 @@
                                 if ($get_['chapter'] > 1){
                             ?>
                                  <div class="button button-back">
-                                    <a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=($row_chapter['chapter'] - 1)?>"><i class="fas fa-arrow-left"></i></a>
+                                    <a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=($get_['chapter'] - 1)?>"><i class="fas fa-arrow-left"></i></a>
                                 </div>
                             <?php
                                 }
@@ -41,7 +41,7 @@
                                 if ($get_['chapter'] < $row_comic['last_chapter']){
                             ?>    
                                 <div class="button button-forward">
-                                    <a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=($row_chapter['chapter'] + 1)?>"><i class="fas fa-arrow-right"></i></a>
+                                    <a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=($get_['chapter'] + 1)?>"><i class="fas fa-arrow-right"></i></a>
                                 </div>
                             <?php
                                 } else {
@@ -55,9 +55,62 @@
                             </div></br>
                         <div class="comic-chapter-img justify-content-center">
                            
-                                <img src="{url_image}" />
+                                <?php 
+                                    $query_chapter_img = $conn->query("SELECT * FROM `comics_chapters` WHERE `comic` = '{$row_comic['id']}' AND `chapter` = '{$get_['chapter']}' ORDER BY id DESC");
+                                    if ($query_chapter->num_rows > 0){
+                                        $row_chapter_img = $query_chapter_img->fetch_assoc()['images'];
+                                        foreach (json_decode($row_chapter_img) as $key_img => $value_img){
+                                            $key_img = $conn->query("SELECT key_img FROM `images_server` WHERE `id` = ".$value_img)->fetch_assoc()['key_img'];
+                                ?>
+                                    <img src="/core/img.php?key=<?=hash("sha256", $key_img.$key_general_img);?>&id=<?=$value_img?>" />
+                                <?php
+                                        }
+                                    } else {
+                                        echo "Không tìm thấy chapter";
+                                    }
+                                    
+                                ?>
                             
                         </div>
+                        <div class="manga-action">
+                            <?php    
+                                if ($get_['chapter'] > 1){
+                            ?>
+                                 <div class="button button-back">
+                                    <a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=($get_['chapter'] - 1)?>"><i class="fas fa-arrow-left"></i></a>
+                                </div>
+                            <?php
+                                }
+                            ?>    
+                                    <select class="form-control chapter-select">
+                                        <?php 
+                                            $query_chapter = $conn->query("SELECT * FROM `comics_chapters` WHERE `comic` = '{$row_comic['id']}' ORDER BY id DESC");
+                                            if ($query_chapter->num_rows > 0){
+                                                while($row_chapter = $query_chapter->fetch_array()){
+                                                    $selected_chap = ($row_chapter['chapter'] == $get_['chapter']) ? "selected" : "";
+                                        ?>            
+                                            <option <?=$selected_chap?>><a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=$row_chapter['chapter']?>">Chap <?=$row_chapter['chapter']?></a></option>
+                                        <?php            
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+                            <?php    
+                                if ($get_['chapter'] < $row_comic['last_chapter']){
+                            ?>    
+                                <div class="button button-forward">
+                                    <a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=($get_['chapter'] + 1)?>"><i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            <?php
+                                } else {
+                            ?>
+                                <div class="button button-forward" style="background-color:tomato;">
+                                    <a class="disabled"><i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            <?php
+                                }
+                            ?>     
+                            </div></br></br>
                      </div>
                   </div>
                </div>

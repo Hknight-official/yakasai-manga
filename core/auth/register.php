@@ -34,9 +34,9 @@
         )));
     }
     
-    $conn->query("INSERT INTO `users` (`name`,`email`,`password`,`role`) VALUES ('{$username}','{$email}','{$password}','1')");
+    $conn->query("INSERT INTO `users` (`name`,`email`,`password`) VALUES ('{$username}','{$email}','{$password}')");
 
-    $_SESSION['login'] = $username;
+    $_SESSION['login'] = $conn->insert_id;
     exit(json_encode(array(
         "status" => 200,
         "msg" => "Đăng Ký Thành Công !"

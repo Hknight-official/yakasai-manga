@@ -7,6 +7,13 @@ $nameweb = "Yakasai.net";
 $per_page = 18;
 $hot_view = 500;
 
+#ftp img config
+$host_ftp = "yakasai.net";
+$username_ftp = "hknight@yakasai.net";
+$password_ftp = "jDrDLWRHYlR~";
+$key_secret = "hknight";
+$key_general_img = $key_secret.strtotime(date("Y-m-d"));
+
 foreach (glob(__DIR__."/function/*.php") as $filename)
 {
     include($filename);

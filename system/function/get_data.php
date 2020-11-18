@@ -9,14 +9,23 @@
 		return bin2hex(openssl_random_pseudo_bytes(32));
 	}
 	
-	function client($id = "") {
-		global $conn;
-		return $conn->query("SELECT * FROM users WHERE id = '{$id}' LIMIT 1")->fetch_array();
+	function client($id = ""){
+		global $_SESSION, $conn;
+        if (empty($id)){
+            if (!empty($_SESSION['login'])){
+                return $conn->query("SELECT * FROM `users` WHERE `id` = '".$_SESSION['login']."'")->fetch_assoc();
+            } else {
+                return false;
+            }
+        } else {
+            return $conn->query("SELECT * FROM `users` WHERE `id` = ".$id)->fetch_assoc();
+        }
+		
 	}
 	
 	function is_client($id = "") {
 		global $conn;
-		return $conn->query("SELECT * FROM users WHERE id = '{$id}' LIMIT 1")->num_rows > 0;
+		return $conn->query("SELECT * FROM `users` WHERE `name` = '{$id}' LIMIT 1")->num_rows > 0;
 	}
 	function view_comic($id = "", $date) {
 		global $conn;
@@ -24,7 +33,7 @@
 		$sql = "SELECT * FROM `comics_views` WHERE comic = '{$id}' AND day = ".(date("d", $date)+0)." AND month = ".(date("m", $date)+0)." AND week = ".(date("W", $date)+0)." AND year = ".date("Y", $date)." LIMIT 1";
 		$query = $conn->query($sql);
 		if ($query->num_rows > 0){
-			return $query->fetch_array()['views'];
+			return $query->fetch_assoc()['views'];
 		} else {
 			return 0;
 		}
@@ -32,7 +41,7 @@
 	}
 	function comic($id = "") {
 		global $conn;
-		return $conn->query("SELECT * FROM `comics` WHERE id = '{$id}' LIMIT 1")->fetch_array();
+		return $conn->query("SELECT * FROM `comics` WHERE id = '{$id}' LIMIT 1")->fetch_assoc();
 	}
 
 	function comic_chapters($comic_id="") {
@@ -54,5 +63,22 @@
 	function translate_group($id = "") {
 		global $conn;
 		$sql = "SELECT * FROM `comics_group` WHERE id = '{$id}' LIMIT 1";
-		return $conn->query($sql)->fetch_array();
+		return $conn->query($sql)->fetch_assoc();
+	}
+
+	function check_data_method($method, $array_key = []){
+		foreach ($array_key as $key){
+			if (empty($method[$key])){
+				return false;
+			}
+		}
+		return true;
+	}
+	function exit_data_method($method, $array_key = []){
+		foreach ($array_key as $key){
+			if (!isset($method[$key])){
+				return false;
+			}
+		}
+		return true;
 	}

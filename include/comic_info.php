@@ -44,7 +44,7 @@ if ($query_views->num_rows < 1){
                                $genres_display = "";
                                foreach ($genres_comic as $key => $value){
                                 $value = str_replace(" ", "", $value);
-                                $id_genres = $conn->query("SELECT * FROM `comics_genres` WHERE label like '%{$value}%'")->fetch_array()['id'];
+                                $id_genres = $conn->query("SELECT * FROM `comics_genres` WHERE `label` like '%{$value}%'")->fetch_array()['id'];
                                 if ($count_i <= 5){
                                 ?>
                                 <a class="series-gerne-item genres-item" href="/the-loai/<?=$id_genres?>"><?=$value?></a>
@@ -147,7 +147,7 @@ if ($query_views->num_rows < 1){
          <section class="volume-list at-series basic-section">
             <header id="volume_11200" class="sect-header">
                <span class="sect-title">
-               Danh sách chương (<?=$conn->query("SELECT id FROM `comics_chapters` WHERE comic = {$row_comic['id']}")->num_rows?>)
+               Danh sách chương (<?=$conn->query("SELECT id FROM `comics_chapters` WHERE comic = {$row_comic['id']}")->num_rows?>)s
                </span>
             </header>
             <main class="d-lg-block">
@@ -161,7 +161,7 @@ if ($query_views->num_rows < 1){
                         ?>   
                         <li class="">
                            <div class="chapter-name">
-                              <a href="/<?=$type_comic?>/<?=$row_comic['id']?>/<?=$row_chapter['chapter']?>" title="<?=$row_comic['name']?>">Chương <?=$row_chapter['chapter']?> </a>
+                              <a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-",$row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=$row_chapter['chapter']?>" title="<?=$row_comic['name']?>">Chương <?=$row_chapter['chapter']?> </a>
                            </div>
                            <div class="chapter-time"><?=$row_chapter['date']?></div>
                         </li>

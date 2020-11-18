@@ -82,10 +82,7 @@
             success: function(data) {
                 load_csrf();
                 if (data.status == 200) {
-                    swal("Thành Công", data.msg, "success");
-                    setTimeout(function() {
-                        //location.href = "/";
-                    }, 2000);
+                    swal("Thành Công", data.msg, "success").then(() => {location.href = "/";});
                 } else {
                     swal("Thất Bại", data.msg, "error");
                 }
@@ -114,10 +111,7 @@
             success: function(data) {
                 load_csrf();
                 if (data.status == 200) {
-                    swal("Thành Công", data.msg, "success");
-                    setTimeout(function() {
-                        //location.href = "/";
-                    }, 2000);
+                    swal("Thành Công", data.msg, "success").then(() => {location.href = "/";});
                 } else {
                     swal("Thất Bại", data.msg, "error");
                 }
