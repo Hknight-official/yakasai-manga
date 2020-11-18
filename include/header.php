@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/4.2.8/js/tooltipster.bundle.min.js"></script>
     <link rel="stylesheet" href="/theme/css/loading.css" />
+    <script src="/theme/js/jquery.imageorder.js"></script>
     <style>
         .background-body {
             background: rgba(25, 26, 26, .8) url('/theme/images/background.jpg') no-repeat center center fixed; 

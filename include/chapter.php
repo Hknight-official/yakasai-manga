@@ -62,7 +62,7 @@
                                         foreach (json_decode($row_chapter_img) as $key_img => $value_img){
                                             $key_img = $conn->query("SELECT key_img FROM `images_server` WHERE `id` = ".$value_img)->fetch_assoc()['key_img'];
                                 ?>
-                                    <img src="/core/img.php?key=<?=hash("sha256", $key_img.$key_general_img);?>&id=<?=$value_img?>" />
+                                    <img class="img_order" src="/core/img.php?key=<?=hash("sha256", $key_img.$key_general_img);?>&id=<?=$value_img?>" />
                                 <?php
                                         }
                                     } else {
@@ -70,7 +70,11 @@
                                     }
                                     
                                 ?>
-                            
+                            <script>
+                                $(document).ready(function() {
+                                    $(document).imageOrder(".img_order");
+                                });
+                            </script>    
                         </div>
                         <div class="manga-action">
                             <?php    
