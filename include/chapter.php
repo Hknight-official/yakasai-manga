@@ -22,14 +22,14 @@
                             <?php
                                 }
                             ?>    
-                                    <select class="form-control chapter-select">
+                                    <select class="form-control chapter-select" onchange="location = this.value;">
                                         <?php 
                                             $query_chapter = $conn->query("SELECT * FROM `comics_chapters` WHERE `comic` = '{$row_comic['id']}' ORDER BY id DESC");
                                             if ($query_chapter->num_rows > 0){
                                                 while($row_chapter = $query_chapter->fetch_array()){
                                                     $selected_chap = ($row_chapter['chapter'] == $get_['chapter']) ? "selected" : "";
                                         ?>            
-                                            <option <?=$selected_chap?>><a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=$row_chapter['chapter']?>">Chap <?=$row_chapter['chapter']?></a></option>
+                                            <option <?=$selected_chap?> value="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row_comic['name'])?>/<?=$row_comic['id']?>/chap-<?=$row_chapter['chapter']?>">Chap <?=$row_chapter['chapter']?></option>
                                         <?php            
                                                 }
                                             }
