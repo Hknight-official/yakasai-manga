@@ -88,6 +88,37 @@ include("./system/init.php");
             include("./include/chapter.php");
             include("./include/footer.php");
         break;
+        case "chapter":
+            if (empty($get_['id']) || empty($get_['name']) || empty($get_['chapter'])){
+                header("location: /");
+                exit();
+            }
+            $id_comic = escape_input($get_['id']);
+            $query = $conn->query("SELECT * FROM `comics` WHERE id = {$id_comic}");
+                if ($query->num_rows < 1){
+                    header("location: /");
+                    exit();
+                }
+            $row_comic = $query->fetch_array(MYSQLI_ASSOC);
+            $type_comic = explode(",", $row_comic['genres'])[0];
+            $title = $row_comic['name']. " chapter".$get_['chapter'];
+            if ($get_['chapter'] < 0 || $get_['chapter'] > $row_comic['last_chapter']){
+                header("location: /");
+                exit();
+            }
+            include("./include/header.php");
+            include("./include/chapter.php");
+            include("./include/footer.php");
+        break;
+        case "upload":
+            if (client()['translater'] == 0){
+                header("location: /");
+                exit();
+            }
+            include("./include/header.php");
+            include("./include/upload_comic.php");
+            include("./include/footer.php");
+        break;
     }    
     
     

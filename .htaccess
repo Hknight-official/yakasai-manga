@@ -18,3 +18,4 @@ RewriteRule ^manhwa/(.*)/(.*)/chap-(.*)$ /index.php?widget=chapter&name=$1&id=$2
 RewriteRule ^manhwa/(.*)/(.*)$ /index.php?widget=manga&name=$1&id=$2 [L]
 
 RewriteRule ^logout$ /core/auth/logout.php [L]
+RewriteRule ^uploader$ /index.php?widget=upload [L]
