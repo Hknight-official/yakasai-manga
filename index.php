@@ -15,9 +15,9 @@ include("./system/init.php");
             if (isset($get_['type_manga'])){
                 $type_manga_url = $get_['type_manga'];
                 switch($get_['type_manga']){
-                    case "manga": $sql_main = " AND `genres` LIKE '%manga%'"; break;
-                    case "manhua": $sql_main = " AND `genres` LIKE '%manhua%'"; break;
-                    case "manhwa": $sql_main = " AND `genres` LIKE '%manhwa%'"; break;
+                    case "manga": $sql_main = " AND `genres` LIKE '%manga%' ORDER BY `last_update` DESC"; break;
+                    case "manhua": $sql_main = " AND `genres` LIKE '%manhua%' ORDER BY `last_update` DESC"; break;
+                    case "manhwa": $sql_main = " AND `genres` LIKE '%manhwa%' ORDER BY `last_update` DESC"; break;
                     default: exit();
                 }    
             }
@@ -111,6 +111,7 @@ include("./system/init.php");
             include("./include/footer.php");
         break;
         case "upload":
+            $title = "Tạo Truyện Mới";
             if (client()['translater'] == 0){
                 header("location: /");
                 exit();

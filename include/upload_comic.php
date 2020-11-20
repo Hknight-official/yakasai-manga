@@ -6,7 +6,7 @@
                     <div class="top-part">
 
 
-                        <form id="form_comic" action="/uploader" method="post">
+                        <form id="form_comic_create" method="post">
                             <div class="row">
                                 <div class="col-sm-12 col-md-5">
                                     <div class="form-group label-floating">
@@ -27,14 +27,14 @@
                                 <div class="col-sm-12 col-md-5">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Author</label>
-                                        <input type="text" name="authorName" value="" class="form-control maxlength" data-max="255" data-msg-maxlength="Kh&#244;ng thể d&#224;i hơn 255 k&#253; tự" />
+                                        <input type="text" name="authorName" value="" class="form-control maxlength" data-max="255" data-msg-maxlength="Không thể dài hơn 255 ký tự" />
                                     </div>
                                 </div>
 
                                 <div class="col-sm-12 col-md-5">
                                     <div class="form-group label-static">
                                         <label class="control-label">Artist</label>
-                                        <input type="text" name="artistName" value="" class="form-control maxlength" data-max="255" data-msg-maxlength="Kh&#244;ng thể d&#224;i hơn 255 k&#253; tự" />
+                                        <input type="text" name="artistName" value="" class="form-control maxlength" data-max="255" data-msg-maxlength="Không thể dài hơn 255 ký tự" />
                                     </div>
                                 </div>
                             </div>
@@ -100,21 +100,71 @@
                                             ?>
                                             <div class="col-md-4">
                                                 <input type="checkbox" class="form-check-input" name="genres_id[]" value="<?=$row_genres['id']?>" id="genres<?=$row_genres['id']?>">
-                                                <label class="form-check-label" for="genres<?=$row_genres['id']?>"> <?=$row_genres['label']?></label>  
+                                                <label style="margin-left:3px;" class="form-check-label" for="genres<?=$row_genres['id']?>"> <?=$row_genres['label']?></label>  
                                             </div>
                                             <?php
                                             }
                                             ?>
                                 </div>
                             </div> </br>
-
+                            <div class="form-group">
+                                <label>Ảnh Bìa:</label>
+                                <div class="col-4">
+                                    <input class="form-control" type="file" id="cover_image" accept="image/*" />
+                                </div>
+                            </div>
+                            </br>               
                             <section id="bottom_bar">
                                 <div class="container-fluid">
-                                    <button class="btn btn-primary btn-raised" type="submit" accesskey="s">Tạo Mới</button>
+                                    <button class="btn btn-primary btn-raised" type="button" id="create_comic">Tạo Mới</button>
                                 </div>
                             </section>
                         </form>
+                        <script>
+                            //form_comic
+                            $("#create_comic").click(() => {
+                                $('#create_comic').prop('disabled', true);
+                                var data = $('#form_comic_create').serializeArray();
+                                data.push({
+                                    name: 'csrf',
+                                    value: $("#csrf_key").val()
+                                });
+                                readImage($("#cover_image")).done((base64Data) => {
+                                    data.push({
+                                        name: 'cover_image',
+                                        value: base64Data
+                                    });
+                                    $.ajax({
+                                        url: '/core/trans/create_comic.php',
+                                        type: 'post',
+                                        dataType: 'json',
+                                        data: data,
+                                        success: function(data) {
+                                            load_csrf();
+                                            
+                                            $('#submit_register').prop('disabled', false);
+                                        }
+                                    });
+                                });
+                                
+                            });
+                            function readImage(inputElement) {
+                                var deferred = $.Deferred();
 
+                                var files = inputElement.get(0).files;
+                                if (files && files[0]) {
+                                    var fr= new FileReader();
+                                    fr.onload = function(e) {
+                                        deferred.resolve(e.target.result);
+                                    };
+                                    fr.readAsDataURL( files[0] );
+                                } else {
+                                    deferred.resolve(undefined);
+                                }
+
+                                return deferred.promise();
+                            }
+                        </script>                    
 
 
                     </div>

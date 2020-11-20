@@ -21,14 +21,40 @@ foreach (glob(__DIR__."/function/*.php") as $filename)
 
 include(__DIR__."/../vendor/autoload.php");
 
-if (isset($_GET)){
-    foreach ($_GET as $key_get => $value_get){
-        $get_[mb_strtolower($key_get)] = $conn->escape_string($value_get);
+$_DISABLE_KEY = 0;
+    if (isset($_GET)){
+        foreach ($_GET as $key_get => $value_get){
+            if (isset($_DISABLE_AUTO_CHECK_METHOD)){
+                $_DISABLE_KEY = 0;
+                foreach ($_DISABLE_AUTO_CHECK_METHOD as $value_method_auto){
+                    if ($key_get == $value_method_auto){
+                        $_DISABLE_KEY = 1;
+                    }
+                }    
+            }
+            if ($_DISABLE_KEY == 1){
+                continue;
+            }
+            $get_[mb_strtolower($key_get)] = $conn->escape_string($value_get);
+        }
     }
-}
-if (isset($_POST)){
-    foreach ($_POST as $key_post => $value_post){
-        $post_[mb_strtolower($key_post)] = $conn->escape_string($value_post);
+
+    if (isset($_POST)){
+        foreach ($_POST as $key_post => $value_post){
+            if (isset($_DISABLE_AUTO_CHECK_METHOD)){
+                $_DISABLE_KEY = 0;
+                foreach ($_DISABLE_AUTO_CHECK_METHOD as $value_method_auto){
+                    if ($key_post == $value_method_auto){
+                        $_DISABLE_KEY = 1;
+                    }
+                }    
+            }
+            if ($_DISABLE_KEY == 1){
+                continue;
+            }
+            $post_[mb_strtolower($key_post)] = $conn->escape_string($value_post);
+        }
     }
-}
+
+
     
