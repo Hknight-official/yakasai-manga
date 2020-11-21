@@ -43,7 +43,8 @@
                                 <div class="col-sm-12 col-md-5">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Nhóm Dịch<span class="text-danger">*</span></label>
-                                        <input class="form-control required maxlength" data-max="225" data-msg-maxlength="Không thể dài hơn 255 ký tự" data-msg-required="Nhóm Dịch bắt buộc nhập" id="TranslatorName" name="TranslatorName" type="text" value="" />
+                                        <input class="form-control required maxlength" id="TranslatorName" type="text" value="<?=translate_group(client()['group'])['name_group']?>" disabled />
+                                        <input type="hidden" name="TranslatorName" value="<?=translate_group(client()['group'])['id']?>" />
                                     </div>
                                 </div>
                             </div>
@@ -141,8 +142,14 @@
                                         data: data,
                                         success: function(data) {
                                             load_csrf();
-                                            
-                                            $('#submit_register').prop('disabled', false);
+                                            if (data.status == 1){
+                                                swal("Thành Công!", data.msg, "success").done(() => {
+                                                    location.href = "/";
+                                                });
+                                            } else {
+                                                swal("Thất Bại!", data.msg, "error");
+                                            }
+                                            $('#create_comic').prop('disabled', false);
                                         }
                                     });
                                 });

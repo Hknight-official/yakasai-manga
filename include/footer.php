@@ -156,7 +156,7 @@
 <footer id="footer">
     <div class="container">
         <span class="right">Liên hệ: <a href="mailto:{mail}" target="_blank" style="color: #5fff46">{mail}</a></span>
-        <span>© 2020 Website Manga Việt Nam - {name_web}</span>
+        <span>© 2020 Website Manga Việt Nam - <?=$nameweb?></span>
     </div>
 </footer>
 </body>

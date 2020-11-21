@@ -23,7 +23,7 @@
             
             <?php 
                 $delay = 2;
-                $query = $conn->query("SELECT * FROM `comics` WHERE 1 {$sql_main} LIMIT 12");
+                $query = $conn->query("SELECT * FROM `comics` WHERE 1 {$sql_main} ORDER BY `last_update` DESC LIMIT 12");
                 while($row = $query->fetch_array()){
                     
                     $type_comic = explode(",", $row['genres'])[0];
@@ -145,7 +145,7 @@
               
             <?php 
                 $delay = 2;
-                $query_new_comic = $conn->query("SELECT * FROM `comics` WHERE 1 {$sql_main} LIMIT {$per_page}");
+                $query_new_comic = $conn->query("SELECT * FROM `comics` WHERE 1 {$sql_main} ORDER BY `last_update` DESC LIMIT {$per_page}");
                 while($row_new_comic = $query_new_comic->fetch_array()){
                   $type_comic = explode(",", $row_new_comic['genres'])[0];
             ?>
@@ -175,7 +175,7 @@
           <hr />
         <div class="pagination-footer">
           <?php 
-          $total_comic = $conn->query("SELECT * FROM `comics` WHERE 1 {$sql_main}")->num_rows;
+          $total_comic = $conn->query("SELECT * FROM `comics` WHERE 1 {$sql_main} ORDER BY `last_update` DESC")->num_rows;
           $url = "/?widget=search&type_manga=".$type_manga_url;
           $page = 1;
             if ($total_comic > $per_page){

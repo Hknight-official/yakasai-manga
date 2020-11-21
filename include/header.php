@@ -263,7 +263,7 @@
                 </ul>
             </div>
             <div class="navbar-header navbar-logo-wrapper" style="padding-top: 1rem;margin-right:0px;">
-                <a class="navbar-brand" href="/" title="Trang chủ" style="color: #03a899;"> <small><i class="fas fa-heart" aria-hidden="true" style="color:tomato"></i></small><b><u> Yasakai.net</u></b></a>
+                <a class="navbar-brand" href="/" title="Trang chủ" style="color: #03a899;"> <small><i class="fas fa-heart" aria-hidden="true" style="color:tomato"></i></small><b><u> <?=$nameweb?></u></b></a>
             </div>
             <?php 
             if (!client()){

@@ -3,13 +3,13 @@
 $genres_comic = explode(",", $row_comic['genres']);
 $type_comic = $genres_comic[0];
 $conn->query("UPDATE `comics` SET views = views + 1 WHERE id = {$row_comic['id']}");
-$query_views = $conn->query("SELECT * FROM `comics_views` WHERE comic = {$row_comic['id']} AND day = ".(date("d")+0)." AND month = ".(date("m")+0)." AND week = ".(date("W")+0)." AND year = ".date("Y"));
+/*$query_views = $conn->query("SELECT * FROM `comics_views` WHERE comic = {$row_comic['id']} AND day = ".(date("d")+0)." AND month = ".(date("m")+0)." AND week = ".(date("W")+0)." AND year = ".date("Y"));
 if ($query_views->num_rows < 1){
     $conn->query("INSERT INTO `comics_views` (`comic`, `day`, `week`, `month`, `year`, `views`) VALUES ({$row_comic['id']}, ".date("d").", ".date("W").", ".date("m").", ".date("Y").", 1)");
 } else {
     $id_view_comic = $query_views->fetch_array(MYSQLI_ASSOC)['id'];
     $conn->query("UPDATE `comics_views` SET views = views + 1 WHERE id = {$id_view_comic}");
-}
+}*/
 ?>
 <div class="container" style="margin-top:30px;">
    <div class="row d-block clearfix">
@@ -43,7 +43,7 @@ if ($query_views->num_rows < 1){
                                unset($genres_comic[0]);
                                $genres_display = "";
                                foreach ($genres_comic as $key => $value){
-                                $value = str_replace(" ", "", $value);
+                                $value = ltrim($value, " ");
                                 $id_genres = $conn->query("SELECT * FROM `comics_genres` WHERE `label` like '%{$value}%'")->fetch_array()['id'];
                                 if ($count_i <= 5){
                                 ?>
@@ -91,37 +91,7 @@ if ($query_views->num_rows < 1){
                         </div>
                         <div class="side-features">
                            <div class="row">
-                              <div class="col-4 col-md feature-item width-auto-xl">
-                                 <a id="collect" class="side-feature-button button-follow follow" href="/login">
-                                 <span class="block feature-value"><i class="far fa-heart"></i></span>
-                                 <span class="block feature-name"> Theo Dõi </span>
-                                 </a>
-                              </div>
-                              <div class="col-4 col-md feature-item width-auto-xl">
-                                 <div class="series-rating rated">
-                                    <label for="open-rating" class="side-feature-button button-rate">
-                                    <span class="block feature-value"><i class="far fa-star"></i></span>
-                                    <span class="block feature-name">Đánh giá</span>
-                                    </label>
-                                    <input type="checkbox" id="open-rating" />
-                                    <div class="series-evaluation clear">
-                                       <span class="star-evaluate-item star-5" data-value="5"><i class="fas fa-star"></i></span>
-                                       <span class="star-evaluate-item star-4" data-value="4"><i class="fas fa-star"></i></span>
-                                       <span class="star-evaluate-item star-3" data-value="3"><i class="fas fa-star"></i></span>
-                                       <span class="star-evaluate-item star-2" data-value="2"><i class="fas fa-star"></i></span>
-                                       <span class="star-evaluate-item star-1" data-value="1"><i class="fas fa-star"></i></span>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="col-4 col-md feature-item width-auto-xl">
-                                 <a href="" class="side-feature-button">
-                                 <span class="block feature-value" style="color:#209cee!important;"><i class="fas fa-money-bill-alt"></i></span>
-                                 <span class="block feature-name">Donate</span>
-                                 </a>
-                              </div>
-                              <div class="col-4 col-md feature-item width-auto-xl">
-                                 
-                              </div>
+                              
                            </div>
                         </div>
                      </div>

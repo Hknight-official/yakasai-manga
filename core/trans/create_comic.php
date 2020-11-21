@@ -30,19 +30,27 @@
         )));
     }
     $name_img = md5(time().rand(1,1000));
-    $file_img_sql = "theme/images/banner/{$name_img}.{$type}";
+    $file_img_sql = "/theme/images/banner/{$name_img}.{$type}";
     file_put_contents("../../theme/images/banner/{$name_img}.{$type}", $data);
 
-    $genres = $post_['Category'];
+    $genres = $post_['category'];
     foreach ($_POST['genres_id'] as $value){
-        $genres .= $conn->query("SELECT `label` FROM `comics_genres` WHERE id = ".$value)->fetch_assoc()['label'];
+        $genres .= ", ".$conn->query("SELECT `label` FROM `comics_genres` WHERE id = ".$value)->fetch_assoc()['label'];
     }
-
-    $conn->query("INSERT INTO `comics`(`name`, `other_name`, `cover_image`, `authors`, `genres`, `description`, `status`, `comic_group`, `user`, `last_chapter`, `views`, `subscribe`, `hidden`, `adult`,) 
-                    VALUES ('{$post_['Name']}', '{$post_['OtherName']}', '{$file_img_sql}', '{$post_['authorName']}', '{$genres}', '{$post_['Status']}', )");
+    if ($post_['isadult'] == "false"){
+        $adult = 0;
+    } else {
+        $adult = 1;
+    }
+    $conn->query("INSERT INTO `comics`(`name`, `other_name`, `cover_image`, `authors`, `genres`, `description`, `status`, `comic_group`, `user`, `last_chapter`, `views`, `subscribe`, `adult`) 
+                    VALUES ('{$post_['name']}', '{$post_['othername']}', '{$file_img_sql}', '{$post_['authorname']}', '{$genres}', '{$post_['summary']}', '{$post_['status']}', '{$post_['translatorname']}', '".client()['id']."', 0, 0, 0, {$adult})");
+    exit(json_encode(array(
+        "status" => 1,
+        "msg" => "Tạo Truyện Thành Công !"
+    )));
 /*
 Category: "Manga"
-IsAdult: "false"
+Isadult: "false"
 Name: ""
 OtherName: ""
 Status: "Ongoing"
