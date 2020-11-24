@@ -117,7 +117,17 @@ include("./system/init.php");
                 exit();
             }
             include("./include/header.php");
-            include("./include/upload_comic.php");
+            include("./include/translator/upload_comic.php");
+            include("./include/footer.php");
+        break;
+        case "upload_chapter":
+            $title = "Đăng chap truyện mới";
+            if (client()['translater'] == 0){
+                header("location: /");
+                exit();
+            }
+            include("./include/header.php");
+            include("./include/translator/upload_chapter.php");
             include("./include/footer.php");
         break;
     }    

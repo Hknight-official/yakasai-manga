@@ -117,7 +117,7 @@ if ($query_views->num_rows < 1){
          <section class="volume-list at-series basic-section">
             <header id="volume_11200" class="sect-header">
                <span class="sect-title">
-               Danh sách chương (<?=$conn->query("SELECT id FROM `comics_chapters` WHERE comic = {$row_comic['id']}")->num_rows?>)s
+               Danh sách chương (<?=$conn->query("SELECT id FROM `comics_chapters` WHERE comic = {$row_comic['id']}")->num_rows?>)
                </span>
             </header>
             <main class="d-lg-block">
