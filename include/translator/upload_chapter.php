@@ -11,7 +11,7 @@
                                 <div class="col-sm-12 col-md-5">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Truyện:</label>
-                                        <select class="form-control select2">
+                                        <select class="form-control select2" name="id_comics">
                                             <?php 
                                                 $query_ = $conn->query("SELECT * FROM `comics` WHERE `user` = ".client()['id']);
                                                 if ($query_->num_rows > 0){
@@ -29,11 +29,20 @@
                                     </div>
                                     <div class="form-group label-floating">
                                         <label class="control-label">Tên Chap:</label>
-                                        <input class="form-control" data-msg-required="Có Thể Bỏ Trống" name="name" />
+                                        <input class="form-control" placeholder="Có Thể Bỏ Trống" name="name" />
+                                    </div>
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Chapter:</label>
+                                        <input class="form-control" placeholder="" type="number" name="chapter" value="1" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Ảnh Truyện: (Đường dẫn ftp)</label>
+                                        <textarea class="form-control" rows="8" id="images_s" placeholder="/tenmanga/anh1.jpg|/tenmanga/anh2.jpg"></textarea>
+                                        <input type="hidden" name="rootdir" value="<?=client()['id']?>" />
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-5">
-
+                                    <label></label>            
                                 </div>
                             </div>
                             </br>               
@@ -52,21 +61,20 @@
                                     name: 'csrf',
                                     value: $("#csrf_key").val()
                                 });
-                                readImage($("#cover_image")).done((base64Data) => {
-                                    data.push({
-                                        name: 'cover_image',
-                                        value: base64Data
-                                    });
+                                data.push({
+                                    name: 'images',
+                                    value: $("#images_s").val().replace(/<br\s*\/?>/mg,"\n")
+                                });
                                     $.ajax({
-                                        url: '/core/trans/create_comic.php',
+                                        url: '/core/trans/create_chapter.php',
                                         type: 'post',
                                         dataType: 'json',
                                         data: data,
                                         success: function(data) {
                                             load_csrf();
                                             if (data.status == 1){
-                                                swal("Thành Công!", data.msg, "success").done(() => {
-                                                    location.href = "/";
+                                                swal("Thành Công!", data.msg, "success").then(() => {
+                                                    location.href = data.url;
                                                 });
                                             } else {
                                                 swal("Thất Bại!", data.msg, "error");
@@ -74,25 +82,7 @@
                                             $('#create_comic').prop('disabled', false);
                                         }
                                     });
-                                });
-                                
                             });
-                            function readImage(inputElement) {
-                                var deferred = $.Deferred();
-
-                                var files = inputElement.get(0).files;
-                                if (files && files[0]) {
-                                    var fr= new FileReader();
-                                    fr.onload = function(e) {
-                                        deferred.resolve(e.target.result);
-                                    };
-                                    fr.readAsDataURL( files[0] );
-                                } else {
-                                    deferred.resolve(undefined);
-                                }
-
-                                return deferred.promise();
-                            }
                         </script>                    
 
 

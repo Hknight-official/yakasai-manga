@@ -2,7 +2,18 @@
     header('content-type: application/json');
     $_DISABLE_AUTO_CHECK_METHOD = ["genres_id"];
     include("../../system/init.php");
-
+    if (!client()){
+        exit(json_encode(array(
+            "status" => 0,
+            "msg" => "Bạn chưa đăng nhập !"
+        )));
+    }
+    if (client()['translater'] == 0){
+        exit(json_encode(array(
+            "status" => 0,
+            "msg" => "Bạn không có quyền !"
+        )));
+    }
     $data = $_POST['cover_image'];
     if (preg_match('/^data:image\/(\w+);base64,/', $data, $type)) {
         $data = substr($data, strpos($data, ',') + 1);

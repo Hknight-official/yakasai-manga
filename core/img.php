@@ -20,5 +20,6 @@ if ($row['type'] == 0){
 } else {
     $path = file_get_contents($row['url_img']);
 }
+//exit('ftp://'.$username_ftp.':'.$password_ftp.'@'.$host_ftp.$row['path_ftp']);
 header('Content-type: ' . image_file_type_from_binary($path));
 exit($path);

@@ -130,7 +130,7 @@
                                     name: 'csrf',
                                     value: $("#csrf_key").val()
                                 });
-                                readImage($("#cover_image")).done((base64Data) => {
+                                readImage($("#cover_image")).then((base64Data) => {
                                     data.push({
                                         name: 'cover_image',
                                         value: base64Data
@@ -143,7 +143,7 @@
                                         success: function(data) {
                                             load_csrf();
                                             if (data.status == 1){
-                                                swal("Thành Công!", data.msg, "success").done(() => {
+                                                swal("Thành Công!", data.msg, "success").then(() => {
                                                     location.href = "/";
                                                 });
                                             } else {
