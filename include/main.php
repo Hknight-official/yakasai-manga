@@ -253,7 +253,7 @@
     </div>
   </div>
   <div style="text-align: center; margin: 0 auto 10px auto;"></div>
-  
+  <!--
   <div class="at-index">
     <div class="container">
       <div class="row">
@@ -297,4 +297,5 @@
       </div>
     </div>
   </div>
+                  -->
 

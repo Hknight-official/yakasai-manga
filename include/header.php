@@ -240,8 +240,8 @@
             <div id="sidenav-icon" class="none-xl none-l">
                 <div class="sidenav-icon-content">
                     <span class="sidenav-icon_white" style="background-color:white;"></span>
-                    <span class="sidenav-icon_white" style="background-color:white;"></span>
-                    <span class="sidenav-icon_white" style="background-color:white;"></span>
+                    <span class="sidenav-icon_white" style="background-color:white;width: 100%;"></span>
+                    <span class="sidenav-icon_white" style="background-color:white;width: 100%;"></span>
                 </div>
                 <ul class="navbar-menu none hidden-block at-mobile unstyle" style="background-color:#333;">
                     <div class="navbar-search block none-m in-navbar-menu">
