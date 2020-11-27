@@ -155,7 +155,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <footer id="footer">
     <div class="container">
-        <span class="right">Liên hệ: <a href="mailto:{mail}" target="_blank" style="color: #5fff46">{mail}</a></span>
+        <span class="right">Liên hệ: <a href="mailto:<?=$email?>" target="_blank" style="color: #5fff46"><?=$email?></a></span>
         <span>© 2020 Website Manga Việt Nam - <?=$nameweb?></span>
     </div>
 </footer>

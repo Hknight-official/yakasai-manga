@@ -29,6 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/4.2.8/js/tooltipster.bundle.min.js"></script>
     <link rel="stylesheet" href="/theme/css/loading.css" />
     <script src="/theme/js/jquery.imageorder.js"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=247560116124152&autoLogAppEvents=1"></script>
     <style>
         .background-body {
             background: rgba(25, 26, 26, .8) url('/theme/images/background.jpg') no-repeat center center fixed; 
@@ -224,7 +225,7 @@
                 border: 1px solid #ccc !important; 
             border-radius: 0px !important; 
         }
-
+        .fb-comments, .fb-comments span, .fb-comments iframe { width: 100% !important; }
     </style>   
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
@@ -250,7 +251,6 @@
                             <button class="search-submit" type="submit" value="Tìm kiếm"><i class="fas fa-search"></i></button>
                         </form>
                     </div>
-                    <li><a class="nav-menu_item" href="/bxh"><span class="">BXH</span></a></li>
                     <li><a class="nav-menu_item" href="/lichsu"><span class="">Lịch Sử</span></a></li>
                     <li class="nav-has-submenu">
                         <a class="nav-menu_item">
@@ -327,7 +327,6 @@
                     </form>
                 </div>
                 <ul style="background-color:#333;" class="navbar-menu at-navbar none d-lg-block unstyled" >
-                    <li><a class="nav-menu_item" href="/bxh"><i class="fas fa-pen-nib menu-icon"></i><span class="">BXH</span></a></li>
                     <li><a class="nav-menu_item" href="/lichsu"><i class="fas fa-book menu-icon"></i><span class="">Lịch Sử</span></a></li>
                     <li class="nav-item">
                         <a data-toggle="dropdown" href="#" aria-expanded="true" class="nav-link nav-menu_item"><i class="far fa-books"></i><span class="d-none d-lg-inline ml-1">Thể loại <i class="fas fa-chevron-down dropdown-icon"></i></span></a>

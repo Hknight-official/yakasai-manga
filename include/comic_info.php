@@ -82,8 +82,8 @@ if ($query_views->num_rows < 1){
                               <span class="info-name">Thống Kê:</span>
                               <span class="info-value">
                               <a>
-                                <span class="statis-comic"><i class="fas fa-star"></i> <span class="sp02 number-like">4,9</span></span>
-                                <span class="statis-comic"><i class="fas fa-heart"></i> <span class="sp02">19,949</span></span>
+                               <!-- <span class="statis-comic"><i class="fas fa-star"></i> <span class="sp02 number-like">4,9</span></span>
+                                <span class="statis-comic"><i class="fas fa-heart"></i> <span class="sp02">19,949</span></span> -->
                                 <span class="statis-comic"><i class="fas fa-eye"></i> <span class="sp02"><?=number_format($row_comic['views'])?></span></span></a>
                               </span>
                             </div>
@@ -150,6 +150,25 @@ if ($query_views->num_rows < 1){
                         ?>
                         
                      </ul>
+                  </div>
+               </div>
+            </main>
+         </section>
+
+         <section class="volume-list at-series basic-section">
+            <header id="volume_11200" class="sect-header">
+               <span class="sect-title">
+               Bình Luận
+               </span>
+            </header>
+            <main class="d-lg-block">
+               <div class="row">
+                  <div class="col-12 col-md-12">
+                     <div id="fb-root"></div>
+                     <div class="fb-comments" data-href="http://yakasai.net/comment/comics/<?=$row_comic['id']?>" data-width="100%" data-numposts="10"></div>
+                     <script>
+                        $(window).resize(function(){$('.fb-comments iframe,.fb-comments span:first-child').css({'width':$('#commentboxcontainer').width()});});
+                     </script>
                   </div>
                </div>
             </main>

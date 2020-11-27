@@ -117,6 +117,28 @@
                </div>
             </main>
          </section>
+
+         <section class="volume-list at-series basic-section">
+            <header id="volume_11200" class="sect-header">
+               <span class="sect-title">
+               Bình Luận
+               </span>
+            </header>
+            <main class="d-lg-block">
+               <div class="row">
+                  <div class="col-1 col-md-1"></div>              
+                  <div class="col-10 col-md-10">
+                     <div id="fb-root"></div>
+                     <div class="fb-comments" data-href="http://yakasai.net/comment/comics/<?=$row_comic['id']?>" data-width="100%" data-numposts="10"></div>
+                     <script>
+                        $(window).resize(function(){$('.fb-comments iframe,.fb-comments span:first-child').css({'width':$('#commentboxcontainer').width()});});
+                     </script>
+                  </div>
+                  <div class="col-1 col-md-1"></div> 
+               </div>
+            </main>
+         </section>
+
       </div>
   
    </div>
