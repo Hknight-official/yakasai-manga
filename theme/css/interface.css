@@ -16849,19 +16849,19 @@ table.listext-table.td-relative tr td {
 }
 
 table.listext-table.has-covers tr td {
-	height: 72px;
+	height: 144px;
 	position: relative
 }
 
 table.listext-table.has-covers tr td .series-cover {
-	width: 44px;
+	width: 88px;
 	position: absolute;
 	top: 4px;
 	border: 1px solid #e9e9e9
 }
 
 table.listext-table.has-covers tr td .series-name {
-	padding-left: 50px
+	padding-left: 100px
 }
 
 table.listext-table tr td .child-of-series-name {

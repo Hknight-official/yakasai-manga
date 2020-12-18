@@ -120,6 +120,12 @@ include("./system/init.php");
             include("./include/translator/upload_comic.php");
             include("./include/footer.php");
         break;
+        case "lichsudoctruyen":
+            $title = "Lịch Sử Đọc Truyện ";
+            include("./include/header.php");
+            include("./include/history.php");
+            include("./include/footer.php");
+        break;
     }    
     
     

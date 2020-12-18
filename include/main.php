@@ -38,6 +38,7 @@
                 <div class="thumb-detail">
                   <div class="thumb_attr series-title" title="<?=$row['name']?>"><a href="/<?=strtolower($type_comic)?>/<?=str_replace(" ", "-", $row['name'])?>/<?=$row['id']?>" title="<?=$row['name']?>"><?=$row['name']?></a></div>
                 </div>
+                <div class="manga-info-top" style="margin-left: 8px;"><span class="badge badge-info"><time title="<?=$row['date']?>" datetime="<?=$row['date']?>" class="timeago"></time> trước</span><?php if (view_comic($row['id'], date("Y-m-d H:i:s")) >= $hot_view){ ?><span class="badge badge-danger ml-1 pulse-animation show-hiden-animation">Hot</span><?php } ?></div>
               </div>
             </div>
             <?php

@@ -155,7 +155,7 @@ if ($query_views->num_rows < 1){
             </main>
          </section>
 
-         <section class="volume-list at-series basic-section">
+         <section class="volume-list at-series basic-section" style="min-height:300px;">
             <header id="volume_11200" class="sect-header">
                <span class="sect-title">
                Bình Luận

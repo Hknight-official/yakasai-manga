@@ -252,6 +252,15 @@
                         </form>
                     </div>
                     <li><a class="nav-menu_item" href="/lichsu"><span class="">Lịch Sử</span></a></li>
+                    <?php 
+                    if (client() != false){
+                        if (client()['translater'] != 0){
+                    ?>
+                    <li><a class="nav-menu_item" href="/uploader"><span class="">Quản Lý Truyện</span></a></li>
+                    <?php 
+                        }
+                    }    
+                    ?>
                     <li class="nav-has-submenu">
                         <a class="nav-menu_item">
                             <span class="">Thể Loại</span>
@@ -294,7 +303,7 @@
                         <div class="at-user_avatar"></div>
                         <ul class="account-sidebar hidden-block unstyled none" style="background-color: #333;">
                             <li>
-                                <a href="/history-read"><i class="fas fa-history"></i><span>Lịch sử Đọc</span></a>
+                                <a href="/lichsu"><i class="fas fa-history"></i><span>Lịch sử Đọc</span></a>
                             </li>
                             <hr class="none block-l">
                             <li>
@@ -327,6 +336,15 @@
                     </form>
                 </div>
                 <ul style="background-color:#333;" class="navbar-menu at-navbar none d-lg-block unstyled" >
+                    <?php 
+                    if (client() != false){
+                        if (client()['translater'] != 0){
+                    ?>
+                    <li><a class="nav-menu_item" href="/uploader"><span class="">Quản Lý Truyện</span></a></li>
+                    <?php 
+                        }
+                    }    
+                    ?>
                     <li><a class="nav-menu_item" href="/lichsu"><i class="fas fa-book menu-icon"></i><span class="">Lịch Sử</span></a></li>
                     <li class="nav-item">
                         <a data-toggle="dropdown" href="#" aria-expanded="true" class="nav-link nav-menu_item"><i class="far fa-books"></i><span class="d-none d-lg-inline ml-1">Thể loại <i class="fas fa-chevron-down dropdown-icon"></i></span></a>

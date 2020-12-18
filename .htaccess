@@ -20,3 +20,5 @@ RewriteRule ^manhwa/(.*)/(.*)$ /index.php?widget=manga&name=$1&id=$2 [L]
 RewriteRule ^logout$ /core/auth/logout.php [L]
 RewriteRule ^uploader$ /index.php?widget=upload [L]
 RewriteRule ^upload_chapter$ /index.php?widget=upload_chapter [L]
+
+RewriteRule ^lichsu$ /index.php?widget=lichsudoctruyen [L]
