@@ -10,6 +10,7 @@ if ($query_views->num_rows < 1){
     $id_view_comic = $query_views->fetch_array(MYSQLI_ASSOC)['id'];
     $conn->query("UPDATE `comics_views` SET views = views + 1 WHERE id = {$id_view_comic}");
 }*/
+
 ?>
 <div class="container" style="margin-top:30px;">
    <div class="row d-block clearfix">

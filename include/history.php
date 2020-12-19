@@ -11,28 +11,41 @@
                     <table class="table table-borderless listext-table has-covers">
                         <tr>
                             <th class="col-md-8">Tên truyện</th>
-                            <th class="none table-cell-m col-md-4">Chương Mới nhất</th>
+                            <th class="none table-cell-m col-md-4">Chương Vừa Đọc</th>
                         </tr>
-
+                        <?php 
+                        if (!empty($_COOKIE['history'])){
+                            foreach($_COOKIE['history'] as $key => $value){
+                                $query_history = $conn->query("SELECT * FROM `comics` WHERE `id` = {$key}");
+                                $value_decode = json_decode($value, true);
+                                if ($query_history->num_rows > 0){
+                                $row_history = $query_history->fetch_assoc();
+                                $genres_comic = explode(",", $row_history['genres']);
+                                $type_comic = $genres_comic[0];
+                        ?>
                         <tr>
                             <td>
                                 <div class="a6-ratio series-cover">
-                                    <div class="content img-in-ratio" style="background-image: url('http://localhost/theme/images/avatar_default.jpg')"></div>
+                                    <div class="content img-in-ratio" style="background-image: url('<?=$row_history['cover_image']?>')"></div>
                                 </div>
                                 <div class="series-name">
-                                    <a href="">{name_comic}</a>
-                                    <small class="type-translation">{type_comic}</small>
-                                    <small class="type-translation">Tác giả: {author}</small>
-                                    <small class="type-translation">Nhóm dịch: {trans}</small>
-                                    <small class="type-translation">Ngày đọc: {date}</small>
+                                    <a href=""><b><?=$row_history['name']?></b></a>
+                                    <small class="type-translation"><?=$type_comic?></small>
+                                    <small class="type-translation">Tác giả: <?=$row_history['authors']?></small>
+                                    <small class="type-translation">Nhóm dịch: <?=translate_group($row_history['comic_group'])['id']?></small>
                                 </div>
                             </td>
                             <td class="none table-cell-m">
-                                <a href="">Chương {chapter}</a>
-                                <small class="volume-name">(Ngày {date})</small>
+                                <a href="">Chương <?=$value_decode[1]?></a>
+                                <small class="volume-name">(Ngày Xem <?=date("Y-m-d h:i:s", $value_decode[0])?>)</small>
                             </td>
                         </tr>
-                        
+                        <?php 
+                                }
+                            }
+                        }    
+                        ?>
+
                     </table>
                 </main>
             </section>

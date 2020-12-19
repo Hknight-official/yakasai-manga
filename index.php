@@ -62,6 +62,11 @@ include("./system/init.php");
                 }
             $row_comic = $query->fetch_array(MYSQLI_ASSOC);
             $title = $row_comic['name'];
+            // set lịch sử đọc
+            if (empty($_COOKIE['history'][$row_comic['id']])){
+                setcookie('history['.$row_comic['id'].']', json_encode([time(), 0]), time() + ((86400 * 30)*365), "/"); 
+             }
+            // end
             include("./include/header.php");
             include("./include/comic_info.php");
             include("./include/footer.php");
@@ -84,28 +89,14 @@ include("./system/init.php");
                 header("location: /");
                 exit();
             }
-            include("./include/header.php");
-            include("./include/chapter.php");
-            include("./include/footer.php");
-        break;
-        case "chapter":
-            if (empty($get_['id']) || empty($get_['name']) || empty($get_['chapter'])){
-                header("location: /");
-                exit();
-            }
-            $id_comic = escape_input($get_['id']);
-            $query = $conn->query("SELECT * FROM `comics` WHERE id = {$id_comic}");
-                if ($query->num_rows < 1){
-                    header("location: /");
-                    exit();
-                }
-            $row_comic = $query->fetch_array(MYSQLI_ASSOC);
-            $type_comic = explode(",", $row_comic['genres'])[0];
-            $title = $row_comic['name']. " chapter".$get_['chapter'];
-            if ($get_['chapter'] < 0 || $get_['chapter'] > $row_comic['last_chapter']){
-                header("location: /");
-                exit();
-            }
+            // set lịch sử đọc
+            if (empty($_COOKIE['history'][$row_comic['id']])){
+                setcookie('history['.$row_comic['id'].']', json_encode([time(), $get_['chapter']]), time() + ((86400 * 30)*365), "/"); 
+             } else {
+                setcookie('history['.$row_comic['id'].']', "", time() - 3600);
+                setcookie('history['.$row_comic['id'].']', json_encode([time(), $get_['chapter']]), time() + ((86400 * 30)*365), "/"); 
+             }
+            // end
             include("./include/header.php");
             include("./include/chapter.php");
             include("./include/footer.php");
