@@ -43,6 +43,12 @@
                         <?php 
                                 }
                             }
+                        } else {
+                        ?>
+                        <tr>
+                            <td colspan="3">Không Có Dữ Liệu</td>
+                        </tr>
+                        <?php
                         }    
                         ?>
 
