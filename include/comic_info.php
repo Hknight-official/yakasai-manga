@@ -104,7 +104,7 @@ if ($query_views->num_rows < 1){
                         <div class="series-summary">
                            <h4>Tóm tắt</h4>
                            <div class="summary-content">
-                               <?=$row_comic['description']?>
+                               <?=nl2br($row_comic['description'])?>
                            </div>
                            <div class="summary-more none more-state">
                               <div class="see_more">Xem thêm</div>
