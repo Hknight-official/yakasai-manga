@@ -1,7 +1,10 @@
 <?php 
     header('content-type: application/json');
     include("../../system/init.php");
-
+    exit(json_encode(array(
+        "status" => 0,
+        "msg" => "Tính năng đã dừng !"
+    )));
     if ($_SESSION['csrf_key'] != $post_['csrf']){
 		exit("cut me may di!");
     }

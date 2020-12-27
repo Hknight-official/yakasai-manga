@@ -289,8 +289,7 @@
             if (!client()){
             ?>
                 <div id="navbar-user" class="guest">
-                    <a class="login-link" href="#register" onclick="$('#register_modal').modal('show');"> <i class="fas fa-users"></i> Đăng Ký</a>
-                    <a class="login-link" href="#login" onclick="$('#login_modal').modal('show');"> <i class="fas fa-key"></i> Đăng nhập</a>
+                    <a class="login-link" href="/core/auth/login_fb.php"> <i class="fab fa-facebook-square"></i> Đăng nhập FB</i></a>
                 </div>
             <?php
             } else {
@@ -298,7 +297,7 @@
                 <div id="navbar-user">
                     <div class="nav-user_icon">
                         <div class="nav-user_avatar">
-                            <img src="<?=client()['profile_image']?>">
+                            <img src="<?=avatar()?>">
                         </div>
                         <div class="at-user_avatar"></div>
                         <ul class="account-sidebar hidden-block unstyled none" style="background-color: #333;">

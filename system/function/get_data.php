@@ -82,3 +82,12 @@
 		}
 		return true;
 	}
+	function avatar($fbId = '', $token = ''){
+		if (empty($fbId) || empty($token)){
+			$fbId = client()['fid'];
+			$token = client()['token'];
+		}
+        $json = file_get_contents('https://graph.facebook.com/v2.5/'.$fbId.'/picture?type=large&redirect=false&access_token='.$token);
+        $picture = json_decode($json, true);
+        return $picture['data']['url'];
+	}

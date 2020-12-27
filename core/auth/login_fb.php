@@ -11,6 +11,6 @@ $fb = new Facebook\Facebook([
   $helper = $fb->getRedirectLoginHelper();
   
   $permissions = ['email']; // Optional permissions
-  $loginUrl = $helper->getLoginUrl($urlweb.'/core/auth/fb-callback.php', $permissions);
+  $loginUrl = $helper->getLoginUrl($urlweb.'/core/auth/callback-fb.php', $permissions);
   header("location: ".$loginUrl);
   exit();
