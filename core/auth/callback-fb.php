@@ -71,10 +71,11 @@ $me = $response->getGraphUser();
 $fid = $me->getId();
 $query = $conn->query("SELECT * FROM `users` WHERE `fid` = '{$fid}'");
 if ($query->num_rows > 0){
-    $_SESSION['login'] = $query->fetch_assoc()['id'];
+    $id_login = $query->fetch_assoc()['id'];
+    $_SESSION['login'] = $id_login;
     $token = (string)$accessToken;
     $avatar = avatar($fid, $token);
-    $conn->query("UPDATE `users` SET `token` = '{$token}', `profile_image` = '{$avatar}'");
+    $conn->query("UPDATE `users` SET `token` = '{$token}', `profile_image` = '{$avatar}' WHERE `id` = {$id_login}");
 } else {
     $username = $conn->escape_string(htmlspecialchars($me->getName(), ENT_QUOTES, 'UTF-8'));
     $email = $me->getEmail();
