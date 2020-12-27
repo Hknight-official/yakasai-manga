@@ -73,12 +73,14 @@ $query = $conn->query("SELECT * FROM `users` WHERE `fid` = '{$fid}'");
 if ($query->num_rows > 0){
     $_SESSION['login'] = $query->fetch_assoc()['id'];
     $token = (string)$accessToken;
-    $conn->query("UPDATE `users` SET `token` = '{$token}'");
+    $avatar = avatar($fid, $token);
+    $conn->query("UPDATE `users` SET `token` = '{$token}', `profile_image` = '{$avatar}'");
 } else {
     $username = $conn->escape_string(htmlspecialchars($me->getName(), ENT_QUOTES, 'UTF-8'));
     $email = $me->getEmail();
     $token = (string)$accessToken;
-    $conn->query("INSERT INTO `users` (`name`,`email`,`password`,`fid`,`token`) VALUES ('{$username}','{$email}','','{$fid}','{$token}')");
+    $avatar = avatar($fid, $token);
+    $conn->query("INSERT INTO `users` (`name`,`email`,`password`,`fid`,`token`,`profile_image`) VALUES ('{$username}','{$email}','','{$fid}','{$token}', '{$avatar}')");
     $_SESSION['login'] = $conn->insert_id;
 }
 header("location: /");

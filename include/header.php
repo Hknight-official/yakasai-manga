@@ -297,7 +297,7 @@
                 <div id="navbar-user">
                     <div class="nav-user_icon">
                         <div class="nav-user_avatar">
-                            <img src="<?=avatar()?>">
+                            <img src="<?=client()['profile_image']?>">
                         </div>
                         <div class="at-user_avatar"></div>
                         <ul class="account-sidebar hidden-block unstyled none" style="background-color: #333;">
