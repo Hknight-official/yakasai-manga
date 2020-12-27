@@ -32,7 +32,7 @@
                                     <a href=""><b><?=$row_history['name']?></b></a>
                                     <small class="type-translation"><?=$type_comic?></small>
                                     <small class="type-translation">Tác giả: <?=$row_history['authors']?></small>
-                                    <small class="type-translation">Nhóm dịch: <?=translate_group($row_history['comic_group'])['id']?></small>
+                                    <small class="type-translation">Nhóm dịch: <?=translate_group($row_history['comic_group'])['name_group']?></small>
                                 </div>
                             </td>
                             <td class="none table-cell-m">
