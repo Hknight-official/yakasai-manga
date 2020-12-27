@@ -15,7 +15,7 @@
     <meta name="logged-in" content="0">
     <link rel="canonical" href="">
     <meta property="og:image" content="">
-    <meta property="fb:app_id" content="">
+    <meta property="fb:app_id" content="725086671770547">
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/theme/css/interface.css?id=fde29cbca40eea8f6585">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha256-BtbhCIbtfeVWGsqxk1vOHEYXS6qcvQvLMZqjtpWUEx8=" crossorigin="anonymous" />
