@@ -30,6 +30,28 @@
     <link rel="stylesheet" href="/theme/css/loading.css" />
     <script src="/theme/js/jquery.imageorder.js"></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v4.0&appId=247560116124152&autoLogAppEvents=1"></script>
+    
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+        appId      : '725086671770547',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v9.0'
+        });
+        
+        FB.AppEvents.logPageView();   
+        
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
     <style>
         .background-body {
             background: rgba(25, 26, 26, .8) url('/theme/images/background.jpg') no-repeat center center fixed; 
