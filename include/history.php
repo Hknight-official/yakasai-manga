@@ -29,8 +29,7 @@
                                     <div class="content img-in-ratio" style="background-image: url('<?=$row_history['cover_image']?>')"></div>
                                 </div>
                                 <div class="series-name">
-                                    <a href=""><b><?=$row_history['name']?></b></a>
-                                    <b class="type-translation">[ <?=$type_comic?> ]</b>
+                                    <a href=""><b>[ <?=$type_comic?> ] <?=$row_history['name']?></b></a>
                                     <small class="type-translation">Tác giả: <?=$row_history['authors']?></small>
                                     <small class="type-translation">Nhóm dịch: <?=translate_group($row_history['comic_group'])['name_group']?></small>
                                 </div>
