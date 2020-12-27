@@ -6,9 +6,33 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit5dca86f7c362e6f934042c554ae6b979
 {
+    public static $prefixLengthsPsr4 = array (
+        'F' => 
+        array (
+            'Facebook\\' => 9,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Facebook\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook',
+        ),
+    );
+
+    public static $classMap = array (
+        'BaseFacebook' => __DIR__ . '/..' . '/facebook/php-sdk/src/base_facebook.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Facebook' => __DIR__ . '/..' . '/facebook/php-sdk/src/facebook.php',
+        'FacebookApiException' => __DIR__ . '/..' . '/facebook/php-sdk/src/base_facebook.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5dca86f7c362e6f934042c554ae6b979::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5dca86f7c362e6f934042c554ae6b979::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit5dca86f7c362e6f934042c554ae6b979::$classMap;
 
         }, null, ClassLoader::class);
     }

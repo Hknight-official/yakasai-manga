@@ -9,6 +9,9 @@ $email = "support@yakasai.net";
 $per_page = 18;
 $hot_view = 500;
 
+#fb config
+$key_fb_app = "725086671770547";
+$key_fb_secret = "6daa4d0162df04de51d07d7b1c97d649";
 #ftp img config
 $host_ftp = "yakasai.net";
 $username_ftp = "hknight@yakasai.net";

@@ -71,7 +71,7 @@ if ($query_views->num_rows < 1){
                             </div>
                            <div class="info-item">
                               <span class="info-name">Tác giả:</span>
-                              <span class="info-value "><a href="/tac-gia/<?=strtolower($row_comic['authors'])?>"><?=$row_comic['authors']?></a></span>
+                              <span class="info-value "><?=$row_comic['authors']?></span>
                            </div>
                            <div class="info-item">
                               <span class="info-name">Tình trạng:</span>
@@ -83,8 +83,8 @@ if ($query_views->num_rows < 1){
                               <span class="info-name">Thống Kê:</span>
                               <span class="info-value">
                               <a>
-                               <!-- <span class="statis-comic"><i class="fas fa-star"></i> <span class="sp02 number-like">4,9</span></span>
-                                <span class="statis-comic"><i class="fas fa-heart"></i> <span class="sp02">19,949</span></span> -->
+                               <!-- <span class="statis-comic"><i class="fas fa-star"></i> <span class="sp02 number-like">4,9</span></span>-->
+                                <span class="statis-comic"><i class="fas fa-heart"></i> <span class="sp02">19,949</span></span> 
                                 <span class="statis-comic"><i class="fas fa-eye"></i> <span class="sp02"><?=number_format($row_comic['views'])?></span></span></a>
                               </span>
                             </div>
