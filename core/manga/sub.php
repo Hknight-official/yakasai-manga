@@ -3,7 +3,7 @@
     include("../../system/init.php");
 
     if (!client()){
-        exit(json_encode(["title" => "Thất bại", "msg" => "Bạn cần đăng nhập để thực hiện chức năng này!", "status" => "success"]));
+        exit("<script>alert('Bạn cần đăng nhập để thực hiện chức năng này!'); window.history.go(-1);</script>");
     }
 
     if(!exit_data_method($get_, ["id_comics"])){
@@ -20,6 +20,7 @@
             header("location: /");
             exit();
         }
+        echo "INSERT INTO `comic_subscribe` (`user`, `comic`) VALUES ('".client()['id']."', '{$get_['id_comics']}')";
         $conn->query("INSERT INTO `comic_subscribe` (`user`, `comic`) VALUES ('".client()['id']."', '{$get_['id_comics']}')");
         exit("<script>alert('Theo dõi truyện thành công!'); window.history.go(-1);</script>");
     }
