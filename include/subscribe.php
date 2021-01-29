@@ -22,6 +22,7 @@
                         $startpoint = ($page * $per_page) - $per_page;
                         $total_comic = $query_new_comic_num->num_rows;
                         $total_pages = ceil($total_comic / $per_page);
+                        echo $total_pages;
                         if ($total_comic > 0){
                             $query_new_comic = $conn->query($sql_sub_comic. " ORDER BY date DESC LIMIT {$startpoint} , {$per_page}");
                             while($row_comic_sub = $query_new_comic->fetch_array()){
