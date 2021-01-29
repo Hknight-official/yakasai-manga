@@ -117,6 +117,17 @@ include("./system/init.php");
             include("./include/history.php");
             include("./include/footer.php");
         break;
+        case "truyentheodoi":
+            $title = "Truyện Đã Theo Dõi";
+            if (!client()){
+                header("location: /");
+                exit();
+            }
+            $url = "/?widget=truyentheodoi";
+            include("./include/header.php");
+            include("./include/subscribe.php");
+            include("./include/footer.php");
+        break;
     }    
     
     

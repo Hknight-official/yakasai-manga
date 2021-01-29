@@ -45,6 +45,11 @@
     $conn->query("INSERT INTO `comics_chapters`(`comic`, `images`, `chapter`, `chapter_name`) VALUES ('{$post_['id_comics']}', '{$done_img}', '{$chapter}', '{$post_['name']}')");
     $chapter_last = $conn->query("SELECT max(chapter) as `result` FROM `comics_chapters` WHERE `comic` = '{$post_['id_comics']}'")->fetch_assoc()['result'];
     $conn->query("UPDATE `comics` SET `last_chapter` = {$chapter_last} WHERE `id` = {$post_['id_comics']}");
+    $conn->query("INSERT INTO `comic_uploader_log`(`comic`, `user`, `chapter`) VALUES ({$post_['id_comics']}, ".client()['id'].", '{$chapter}')");
+    // cập nhật thông báo truyện
+    $conn->query("UPDATE `comics_subscribe` SET `chapter_new` = CONCAT(IFNULL(`chapter_new`,''), '|', '{$chapter}'), `status` = 0, `date`= NOW() WHERE comic = '{$post_['id_comics']}'");
+    // end
+    
     $name_comic = $conn->query("SELECT * FROM `comics` WHERE id = {$post_['id_comics']}")->fetch_assoc();
     exit(json_encode(array(
         "status" => 1,

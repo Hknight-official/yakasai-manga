@@ -4,25 +4,28 @@
             <section class="volume-list at-series basic-section">
                 <header id="volume_11200" class="sect-header">
                     <span class="sect-title">
-                        Lịch Sử Đọc Truyện
+                        Truyện đã theo dõi
                     </span>
                 </header>
                 <main class="d-lg-block" style="min-height:800px;">
                     <table class="table table-borderless listext-table has-covers">
                         <tr>
                             <th class="col-md-8">Tên truyện</th>
-                            <th class="none table-cell-m col-md-4">Chương Vừa Đọc</th>
+                            <th class="none table-cell-m col-md-4">Chương Mới Nhất</th>
                         </tr>
                         <?php 
-                        if (!empty($_COOKIE['history'])){
-                            $i_count = 1;
-                            foreach($_COOKIE['history'] as $key => $value){
-                                $i_count++;
-                                if ($i_count == 51){
-                                    break;
-                                }
-                                $query_history = $conn->query("SELECT * FROM `comics` WHERE `id` = {$key}");
-                                $value_decode = json_decode($value, true);
+                        $sql_sub_comic = "SELECT * FROM `comics_subscribe` WHERE `user` = ".client()['id'];
+                        $query_new_comic_num = $conn->query($sql_sub_comic);
+
+                        $page = (int)(empty($_GET["page"]) ? 1 : $_GET["page"]);
+                        if ($page <= 0){ $page = 1;}
+                        $startpoint = ($page * $per_page) - $per_page;
+                        $total_comic = $query_new_comic_num->num_rows;
+                        $total_pages = ceil($total_comic / $per_page);
+                        if ($total_comic > 0){
+                            $query_new_comic = $conn->query($sql_sub_comic. " ORDER BY date DESC LIMIT {$startpoint} , {$per_page}");
+                            while($row_comic_sub = $query_new_comic->fetch_array()){
+                                $query_history = $conn->query("SELECT * FROM `comics` WHERE `id` = {$row_comic_sub['id']}");
                                 if ($query_history->num_rows > 0){
                                 $row_history = $query_history->fetch_assoc();
                                 $genres_comic = explode(",", $row_history['genres']);
@@ -40,8 +43,8 @@
                                 </div>
                             </td>
                             <td class="none table-cell-m">
-                                <a href="">Chương <?=$value_decode[1]?></a>
-                                <small class="volume-name">(Ngày Xem <?=date("Y-m-d h:i:s", $value_decode[0])?>)</small>
+                                <a href="">Chương <?=$row_history['name']?></a>
+                                <small class="volume-name">(Ngày đăng <?=$row_history['last_update']?>)</small>
                             </td>
                         </tr>
                         <?php 
@@ -58,6 +61,14 @@
 
                     </table>
                 </main>
+                <hr />
+                    <div class="pagination-footer">
+                        <?php 
+                        if ($total_comic > $per_page){
+                            echo createLinks(2, $total_comic, $per_page, $page, $url);
+                        }
+                        
+                        ?>
             </section>
         </div>
 
