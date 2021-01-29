@@ -1,5 +1,4 @@
 <?php 
-    header('content-type: application/json');
     include("../../system/init.php");
 
     if (!client()){
@@ -20,8 +19,7 @@
             header("location: /");
             exit();
         }
-        echo "INSERT INTO `comic_subscribe` (`user`, `comic`) VALUES ('".client()['id']."', '{$get_['id_comics']}')";
-        $conn->query("INSERT INTO `comic_subscribe` (`user`, `comic`) VALUES ('".client()['id']."', '{$get_['id_comics']}')");
+        $conn->query("INSERT INTO `comics_subscribe` (`user`, `comic`) VALUES ('".client()['id']."', '{$get_['id_comics']}')");
         exit("<script>alert('Theo dõi truyện thành công!'); window.history.go(-1);</script>");
     }
    
