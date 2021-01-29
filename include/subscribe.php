@@ -22,12 +22,11 @@
                         $startpoint = ($page * $per_page) - $per_page;
                         $total_comic = $query_new_comic_num->num_rows;
                         $total_pages = ceil($total_comic / $per_page);
-                        echo $total_pages;
                         if ($total_comic > 0){
                             echo $sql_sub_comic. " ORDER BY date DESC LIMIT {$startpoint} , {$per_page}";
                             $query_new_comic = $conn->query($sql_sub_comic. " ORDER BY date DESC LIMIT {$startpoint} , {$per_page}");
                             while($row_comic_sub = $query_new_comic->fetch_array()){
-                                $query_history = $conn->query("SELECT * FROM `comics` WHERE `id` = {$row_comic_sub['id']}");
+                                $query_history = $conn->query("SELECT * FROM `comics` WHERE `id` = {$row_comic_sub['comic']}");
                                 if ($query_history->num_rows > 0){
                                 $row_history = $query_history->fetch_assoc();
                                 $genres_comic = explode(",", $row_history['genres']);
