@@ -22,3 +22,4 @@ RewriteRule ^uploader$ /index.php?widget=upload [L]
 RewriteRule ^upload_chapter$ /index.php?widget=upload_chapter [L]
 
 RewriteRule ^lichsu$ /index.php?widget=lichsudoctruyen [L]
+RewriteRule ^comic-reg$ /index.php?widget=truyentheodoi [L]
